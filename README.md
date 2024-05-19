@@ -1,68 +1,84 @@
-# CodeIgniter 4 Application Starter
+# Document Management System
 
-## What is CodeIgniter?
+This is a Document Management System built using PHP 8.1.26 and CodeIgniter v4.5.1.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Requirements
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- PHP 8.1.26
+- Composer
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Installation
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+1. Clone the repository:
 
-## Installation & updates
+    ```sh
+    git clone [https://github.com/your-repo/document-management-system.git](https://github.com/Ajeeshks857/www.onlinedocument.com.git)
+    cd www.onlinedocument.com
+    ```
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+2. Install the dependencies:
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+    ```sh
+    composer install
+    ```
 
-## Setup
+3. Set up your database:
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+    Update the `.env` file with your database configuration. For example:
 
-## Important Change with index.php
+    ```dotenv
+    database.default.hostname = localhost
+    database.default.database = your_database
+    database.default.username = your_username
+    database.default.password = your_password
+    database.default.DBDriver = MySQLi
+    ```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+4. Run the migrations:
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+    ```sh
+    php spark migrate
+    ```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+5. Seed the database:
 
-## Repository Management
+    ```sh
+    php spark db:seed RolesSeeder
+    php spark db:seed UsersSeeder
+    ```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+6. Start the development server:
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+    ```sh
+    php spark serve
+    ```
 
-## Server Requirements
+## Default Users
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+### Admin
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- **Email**: admin@codepoint.com
+- **Password**: Admin@123
 
-> [!WARNING]
-> The end of life date for PHP 7.4 was November 28, 2022.
-> The end of life date for PHP 8.0 was November 26, 2023.
-> If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> The end of life date for PHP 8.1 will be November 25, 2024.
+### User
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+- **Email**: user@codepoint.com
+- **Password**: User@123
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## Usage
+
+1. Navigate to `http://localhost:8080` in your web browser.
+2. Log in using the default admin or user credentials provided above.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Create a new Pull Request.
+
+## License
+
+This project is licensed under the MIT License.
